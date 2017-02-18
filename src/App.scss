@@ -1,0 +1,145 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40px;
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  left: 20px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.season {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  &.season-winter {
+    background-image: url('img/lake_winter.jpg');
+  }
+
+  &.season-spring {
+    background-image: url('img/lake_spring.jpg');
+  }
+
+  &.season-summer {
+    background-image: url('img/lake_summer.jpg');
+  }
+
+  &.season-autumn {
+    background-image: url('img/lake_autumn.jpg');
+
+    &.w01d {
+      background-image: url('img/autumn_01d.jpg');
+    }
+    &.w01n {
+      background-image: url('img/autumn_01n.jpg');
+    }
+    &.w02d {
+      background-image: url('img/autumn_02d.jpg');
+    }
+    &.w02n {
+      background-image: url('img/autumn_02n.jpg');
+    }
+    &.w03d {
+      background-image: url('img/autumn_03d.jpg');
+    }
+    &.w03n {
+      background-image: url('img/autumn_03n.jpg');
+    }
+    &.w04d {
+      background-image: url('img/autumn_04d.jpg');
+    }
+    &.w04n {
+      background-image: url('img/autumn_04n.jpg');
+    }
+  }
+}
+
+.gerb {
+  position: absolute;
+  background: url('img/galich.png') center center no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 50px;
+  z-index: 9;
+  top: 20px;
+  right: 20px;
+}
+
+.data {
+  text-align: center;
+  width: 300px;
+
+  height: 340px;
+  //display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  z-index: 20;
+  background: rgba(0,0,0,0.5);
+  padding: 20px;
+  box-sizing: border-box;
+
+  &.data1 {
+    margin: -170px 0 0 -310px;
+  }
+
+  &.data2 {
+    margin: -170px 0 0 10px;
+  }
+
+  .season-spring & {
+    color: #fff;
+  }
+
+  .season-summer & {
+    color: #fff;
+  }
+
+  .season-autumn & {
+    color: #ff0;
+  }
+
+  .season-winter & {
+    color: #fff;
+  }
+}
+
+.title {
+  font-size: 40px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.text {
+  line-height: 40px;
+  font-size: 30px;
+  text-shadow: 1px 1px 10px rgba(255,0,0,0.8);
+  letter-spacing: 4px;
+}
+
+.time {
+  line-height: 40px;
+  font-size: 30px;
+  text-shadow: 1px 1px 10px rgba(255,0,0,0.8);
+}
+
+.weather-icon {
+  font-family: "MeteoconsRegular", sans-serif;
+}
+
