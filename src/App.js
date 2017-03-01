@@ -41,7 +41,7 @@ class App extends Component {
     const month = d.getMonth();
     const year = d.getFullYear();
 
-    const nextYear = year+(month < 2 ? 0 : 1);
+    const nextYear = year+(month <= 2 ? 0 : 1);
     const nextSpringMonth = 3;
     const isLeap = leapYear(nextYear);
     const nextMonths = [31,28,31,30,31,30,31,31,30,31,30,31];
@@ -120,7 +120,7 @@ class App extends Component {
              temp={this.state.goa.main.temp}
              icon={goaWeatherIcon}
              icon_title={this.state.goa.weather[0].description}
-             message={{__html: "Всегда<br />весна!"}} />
+             message={{__html: "Всегда<br />лето!"}} />
       : '';
 
     return (
