@@ -17,7 +17,7 @@ class App extends Component {
 
   componentDidMount() {
     loadWeather('Galich,ru').then(galich => this.setState({galich}))
-    loadWeather('Goa,in').then(goa => this.setState({goa}))
+    loadWeather('Vasco Da Gama,in').then(goa => this.setState({goa}))
     this.setState(this.getTime())
   }
 
