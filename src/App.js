@@ -40,9 +40,19 @@ class App extends Component {
     const d = new Date();
     const month = d.getMonth();
     const year = d.getFullYear();
+    const day = d.getDate();
+    const nextSpringMonth = 2;
+    const nextSpringDay = 20;
 
-    const nextYear = year+(month <= 2 ? 0 : 1);
-    const nextSpringMonth = 3;
+    // console.log(nextSpringMonth+nextSpringDay);
+    // console.log(month+day);
+    const isSpringCome = nextSpringMonth+nextSpringDay <= month+day;
+
+
+    const nextYear = year+(!isSpringCome ? 0 : 1);
+
+    // console.log(isSpringCome, nextYear, month);
+
     const isLeap = leapYear(nextYear);
     const nextMonths = [31,28,31,30,31,30,31,31,30,31,30,31];
 
@@ -50,8 +60,10 @@ class App extends Component {
       nextMonths[1] = 29;
     }
 
-    const springDate = new Date(nextYear, nextSpringMonth, 1, 0, 0, 0);
-    const className = seasons[month];
+    console.log(nextYear, nextSpringMonth, nextSpringDay);
+
+    const springDate = new Date(nextYear, nextSpringMonth, nextSpringDay, 0, 0, 0);
+    const className = (2 === parseInt(month) && isSpringCome ? 'spring' : seasons[month]);
 
     if (className === 'spring') {
       return {message: 'Весна!', season: className, time: {__html: ''}};
@@ -74,8 +86,9 @@ class App extends Component {
         for (i = 0; i <= 2; i++){
           months++;
           monthDays += nextMonths[i];
+          monthDays -= 10;
         }
-
+        console.log(months, monthDays);
 
       } else if (nextSpringMonth > month && year === nextYear) {
         for (i = month+1; i <= 2; i++){
@@ -101,10 +114,12 @@ class App extends Component {
   }
 
   render() {
-
+    console.log(this.state.season);
     const galichWeatherIcon = this.getIcon(this.state.galich);
     const goaWeatherIcon = this.getIcon(this.state.goa);
     const season = "season" + (this.state.season && ' season-'+ this.state.season);
+    document.body.className = '';
+    document.body.className = season;
     const galichPlace = typeof this.state.galich.main !== 'undefined' ?
       <Place title="Галич"
              time={this.state.time}
@@ -124,7 +139,7 @@ class App extends Component {
       : '';
 
     return (
-      <div className={season}>
+      <div className="wrapper">
         {this.state.errorMessage && <span className="error">{this.state.errorMessage}</span> }
         <img src={logo} className="App-logo" alt="logo" />
         <div className="gerb" title="Герб Галича"></div>

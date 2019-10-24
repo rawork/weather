@@ -16,13 +16,12 @@
   to { transform: rotate(360deg); }
 }
 
+.wrapper {
+  padding-top: 70px;
+}
+
 .season {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
@@ -86,22 +85,10 @@
 
   height: 340px;
   //display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  z-index: 20;
   background: rgba(0,0,0,0.5);
   padding: 20px;
   box-sizing: border-box;
-
-  &.data1 {
-    margin: -170px 0 0 -310px;
-  }
-
-  &.data2 {
-    margin: -170px 0 0 10px;
-  }
+  margin: 20px auto;
 
   .season-spring & {
     color: #fff;
@@ -143,3 +130,26 @@
   font-family: "MeteoconsRegular", sans-serif;
 }
 
+
+@media screen and (min-width: 768px) {
+  .data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    z-index: 20;
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    box-sizing: border-box;
+
+
+    &.data1 {
+      margin: -170px 0 0 -310px;
+    }
+
+    &.data2 {
+      margin: -170px 0 0 10px;
+    }
+  }
+
+}
