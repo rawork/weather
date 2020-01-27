@@ -37,21 +37,17 @@ class App extends Component {
   }
 
   getTime() {
+    // const d = new Date(2019, 8, 10, 0, 0, 1);
     const d = new Date();
     const month = d.getMonth();
     const year = d.getFullYear();
     const day = d.getDate();
+
     const nextSpringMonth = 2;
     const nextSpringDay = 20;
 
-    // console.log(nextSpringMonth+nextSpringDay);
-    // console.log(month+day);
-    const isSpringCome = nextSpringMonth+nextSpringDay <= month+day;
-
-
+    const isSpringCome = nextSpringMonth*30+nextSpringDay < month*30+day;
     const nextYear = year+(!isSpringCome ? 0 : 1);
-
-    // console.log(isSpringCome, nextYear, month);
 
     const isLeap = leapYear(nextYear);
     const nextMonths = [31,28,31,30,31,30,31,31,30,31,30,31];
@@ -60,9 +56,7 @@ class App extends Component {
       nextMonths[1] = 29;
     }
 
-    console.log(nextYear, nextSpringMonth, nextSpringDay);
-
-    const springDate = new Date(nextYear, nextSpringMonth, nextSpringDay, 0, 0, 0);
+    const springDate = new Date(nextYear, nextSpringMonth, nextSpringDay, 0, 0, 1);
     const className = (2 === parseInt(month) && isSpringCome ? 'spring' : seasons[month]);
 
     if (className === 'spring') {
@@ -78,43 +72,50 @@ class App extends Component {
       let monthDays = 0;
       let i = 0;
 
-      if (nextSpringMonth < month && year < nextYear) {
-        for (i = month+1; i <= 11; i++){
+      if (nextSpringMonth < month && year <= nextYear) {
+        for (i = month; i <= 11; i++){
           months++;
           monthDays += nextMonths[i];
         }
-        for (i = 0; i <= 2; i++){
+        for (i = 0; i < 2; i++){
           months++;
           monthDays += nextMonths[i];
-          monthDays -= 10;
         }
-        console.log(months, monthDays);
-
+        monthDays -= day-1;
       } else if (nextSpringMonth > month && year === nextYear) {
-        for (i = month+1; i <= 2; i++){
+        for (i = month+1; i < 2; i++){
           months++;
           monthDays += nextMonths[i];
+
         }
+        monthDays += nextSpringDay - 1;
+
+      } else if (nextSpringDay > day && nextSpringMonth === month && year === nextYear) {
+        months = 0;
+        monthDays = nextSpringDay - day;
       }
+
+      // console.log(months, monthDays, days);
 
       let timeMessage = [];
 
-      if (months > 0) {
-        timeMessage = [
-          months +' месяц'+declOfNum(months, ['', 'а', 'ев']),
-          '<br/> и'
-        ];
+      // if (months > 0) {
+      //   timeMessage = [
+      //     months +' месяц'+declOfNum(months, ['', 'а', 'ев']),
+      //     '<br/> и'
+      //   ];
+      //
+      // }
 
-      }
-
-      timeMessage.push((days-monthDays) + ' ' + declOfNum((days-monthDays), ['день', 'дня', 'дней']))
+      // timeMessage.push((days-monthDays) + ' ' + declOfNum((days-monthDays), ['день', 'дня', 'дней']))
+      timeMessage.push((days) + ' ' + declOfNum((days), ['день', 'дня', 'дней']))
 
       return {message: 'До весны', season: className, time: {__html: timeMessage.join(' ')}};
     }
   }
 
   render() {
-    console.log(this.state.season);
+    // console.log(this.state.season);
     const galichWeatherIcon = this.getIcon(this.state.galich);
     const goaWeatherIcon = this.getIcon(this.state.goa);
     const season = "season" + (this.state.season && ' season-'+ this.state.season);
