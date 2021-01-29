@@ -11,6 +11,7 @@ export const Place = (props) => {
       <div className="weather">{temp} <small>&deg;C</small></div>
       <div className="text" dangerouslySetInnerHTML={props.message} />
       <div className="time" dangerouslySetInnerHTML={props.time} />
+      <div className="daytime" dangerouslySetInnerHTML={props.daytime} />
     </div>)
 }
 

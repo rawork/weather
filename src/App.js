@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.scss';
 import {Place} from './components/weather';
-import {loadWeather} from './lib/weatherService';
+import {loadWeather, loadDaytime} from './lib/weatherService';
 import {seasons, types, iDiv, declOfNum, leapYear} from './lib/utils';
 
 class App extends Component {
@@ -12,12 +12,14 @@ class App extends Component {
     goa: {},
     time: '',
     message: '',
-    season: ''
+    season: '',
+    daytime: {}
   }
 
   componentDidMount() {
     loadWeather('Galich,ru').then(galich => this.setState({galich}))
     loadWeather('Vasco Da Gama,in').then(goa => this.setState({goa}))
+    loadDaytime().then(daytime => this.setState({daytime}));
     this.setState(this.getTime())
   }
 
@@ -128,7 +130,8 @@ class App extends Component {
              temp={this.state.galich.main.temp}
              icon={galichWeatherIcon}
              icon_title={this.state.galich.weather[0].description}
-             message={{__html: this.state.message}} />
+             message={{__html: this.state.message}}
+             daytime={{__html: this.state.daytime ? this.state.daytime.day_length : ''}} />
       : '';
     const goaPlace = typeof this.state.goa.main !== 'undefined' ?
       <Place title="Гоа"
@@ -136,7 +139,9 @@ class App extends Component {
              temp={this.state.goa.main.temp}
              icon={goaWeatherIcon}
              icon_title={this.state.goa.weather[0].description}
-             message={{__html: "Всегда<br />лето!"}} />
+             message={{__html: "Всегда<br />лето!"}}
+             daytime={{__html: ''}}
+      />
       : '';
 
     return (

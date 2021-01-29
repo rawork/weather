@@ -4,3 +4,8 @@ export const loadWeather = (place) => {
   return fetch(baseUrl.replace('{city}', place))
     .then(res => res.json())
 }
+
+export const loadDaytime = () => {
+  return fetch('https://api.sunrise-sunset.org/json?lat=58.388006&lng=42.447329')
+      .then(res => res.json())
+}
