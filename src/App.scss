@@ -27,56 +27,60 @@
   background-size: cover;
 
   &.season-winter {
-    background-image: url('img/lake_winter.jpg');
+    background-image: url('assets/img/lake_winter.jpg');
   }
 
   &.season-spring {
-    background-image: url('img/lake_spring.jpg');
+    background-image: url('assets/img/lake_spring.jpg');
   }
 
   &.season-summer {
-    background-image: url('img/lake_summer.jpg');
+    background-image: url('assets/img/lake_summer.jpg');
   }
 
   &.season-autumn {
-    background-image: url('img/lake_autumn.jpg');
+    background-image: url('assets/img/lake_autumn.jpg');
 
     &.w01d {
-      background-image: url('img/autumn_01d.jpg');
+      background-image: url('assets/img/autumn_01d.jpg');
     }
     &.w01n {
-      background-image: url('img/autumn_01n.jpg');
+      background-image: url('assets/img/autumn_01n.jpg');
     }
     &.w02d {
-      background-image: url('img/autumn_02d.jpg');
+      background-image: url('assets/img/autumn_02d.jpg');
     }
     &.w02n {
-      background-image: url('img/autumn_02n.jpg');
+      background-image: url('assets/img/autumn_02n.jpg');
     }
     &.w03d {
-      background-image: url('img/autumn_03d.jpg');
+      background-image: url('assets/img/autumn_03d.jpg');
     }
     &.w03n {
-      background-image: url('img/autumn_03n.jpg');
+      background-image: url('assets/img/autumn_03n.jpg');
     }
     &.w04d {
-      background-image: url('img/autumn_04d.jpg');
+      background-image: url('assets/img/autumn_04d.jpg');
     }
     &.w04n {
-      background-image: url('img/autumn_04n.jpg');
+      background-image: url('assets/img/autumn_04n.jpg');
     }
   }
 }
 
 .gerb {
   position: absolute;
-  background: url('img/galich.png') center center no-repeat;
+  background: url('assets/img/galich.png') center center no-repeat;
   background-size: 100%;
   width: 40px;
   height: 50px;
   z-index: 9;
   top: 20px;
   right: 20px;
+}
+
+.container {
+
 }
 
 .data {
@@ -139,23 +143,23 @@
 
 @media screen and (min-width: 768px) {
   .data {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    z-index: 20;
     background: rgba(0,0,0,0.5);
     padding: 20px;
     box-sizing: border-box;
-
-
-    &.data1 {
-      margin: -170px 0 0 -310px;
-    }
-
-    &.data2 {
-      margin: -170px 0 0 10px;
-    }
   }
 
+}
+
+@media screen and (min-width: 992px) {
+  .container {
+    display: grid;
+    /* Creates three equal columns */
+    grid-template-columns: repeat(3, 1fr);
+    /* Centers the content within each grid cell (item) */
+    place-items: center;
+    /* Optional: ensures the container has a visible size */
+    height: 360px;
+    width: 100%;
+    padding-top: 120px;
+  }
 }
